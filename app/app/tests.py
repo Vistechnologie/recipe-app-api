@@ -3,8 +3,8 @@ Simple tests
 """
 
 from django.test import SimpleTestCase
-
 from app import calc
+
 
 class CalcTests(SimpleTestCase):
     """Test the calc functions"""
@@ -14,5 +14,4 @@ class CalcTests(SimpleTestCase):
 
     def test_subtract(self):
         """Test that values are subtracted and returned"""
-        self.assertEqual(calc.subtract(5, 11), 6)    
-
+        self.assertEqual(calc.subtract(5, 11), 6)

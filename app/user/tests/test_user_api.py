@@ -10,6 +10,7 @@ from django.contrib.auth import get_user_model
 
 CREATE_USER_URL = reverse('user:create')
 
+
 def create_user(**params):
     """Helper function to create a user"""
     return get_user_model().objects.create_user(**params)
@@ -61,16 +62,3 @@ class PublicUserApiTests(TestCase):
                 email=payload['email']
             ).exists()
             self.assertFalse(user_exists)
-
-        def test_create_token_for_user(self):
-            """Test that a token is created for the user"""
-            payload = {
-                 'email': 'test@example.com',
-                'password': 'testpass',
-                'name': 'Test Name',
-            }
-            create_user(**payload)
-            res = self.client.post(TOKEN_URL, payload)
-            self.assertIn('token', res.data)
-            self.assertEqual(res.status_code, status.HTTP_200_OK)
-
